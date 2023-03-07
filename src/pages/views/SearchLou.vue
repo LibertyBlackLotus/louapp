@@ -1,13 +1,14 @@
 <script setup>
 import loumap from "@/modal/qlhlou.min"
 import {reactive,ref} from "vue";
-import {get,set,assign,find,forEach,toNumber,cloneDeep} from "lodash";
+import {get,set,find,forEach,toNumber} from "lodash";
 
 import CMPRelations from "@/components/Relations.vue";
 
 const filter = reactive({
     indexLou:"", // 0005
     username:"", // 王志，孟潮，孟祥旺，王凤, 王雷
+    house:"", // 47-1-1-101
 })
 
 // 是否找到当前用户
@@ -200,6 +201,17 @@ function doSearch(){
                 currentUsers.push(v);
             }
         });
+    }else if(filter.house){
+        forEach(listFilterLou,(v)=>{
+            // console.log("==vv=",v);
+            // let ret = v["被腾退人"]==filter.username?true:false;
+            let ret = find(v.lous,{"unitID":filter.house})
+            // console.log("===",ret);
+            // // 找到匹配人就存入
+            if(!!ret){
+                currentUsers.push(v);
+            }
+        });
     }
     // console.log("==ret 1=",currentUsers)
     // 是否找到
@@ -229,6 +241,10 @@ doSearch();
         <div class="field">
             <label>被腾退人：</label>
             <a-input allowClear v-model:value="filter.username" placeholder="请输入被腾退人姓名" />
+        </div>
+        <div class="field">
+            <label>房间地址：</label>
+            <a-input allowClear v-model:value="filter.house" placeholder="如：47-1-1-101" />
         </div>
         <div class="field">
             <a-button type="primary" @click.stop="doSearch">搜索</a-button>
