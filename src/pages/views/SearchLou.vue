@@ -7,7 +7,7 @@ import CMPRelations from "@/components/Relations.vue";
 
 const filter = reactive({
     indexLou:"", // 0005
-    username:"王志", // 王志，孟潮，孟祥旺，王凤, 王雷
+    username:"", // 王志，孟潮，孟祥旺，王凤, 王雷
     house:"", // 47-1-1-101
 })
 
