@@ -12,11 +12,13 @@ const uname = props.neighbor&&props.neighbor["被腾退人"]||"无";
 const uid = props.neighbor&&props.neighbor["身份证号"]||"无";
 const country = props.neighbor&&props.neighbor["村落简称"]||"无";
 const no = props.neighbor&&props.neighbor["选房序号"]||"无";
+const house = props.neighbor&&props.neighbor["选房信息"]||"无";
 const info = ref({
     uname,
     uid,
     country,
-    no
+    no,
+    house
 })
 const hasNeighbor = ref(!!props.neighbor);
 const cunMap = {
@@ -30,6 +32,7 @@ const cunMap = {
 function displayCun(cun){
     return get(cunMap,cun)
 }
+console.log("===",props.neighbor)
 </script>
 <template>
 <a-card  :title="props.title" class="user self">
@@ -51,6 +54,10 @@ function displayCun(cun){
             <label>选房序号：</label>
             <p>{{info.no}}</p>
         </a-list-item>
+        <!-- <a-list-item class="item">
+            <label>选房信息：</label>
+            <p>{{info.house}}</p>
+        </a-list-item> -->
     </a-list>
 </a-card>
 </template>
