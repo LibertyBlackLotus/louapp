@@ -32,7 +32,7 @@ const cunMap = {
 function displayCun(cun){
     return get(cunMap,cun)
 }
-console.log("===",props.neighbor)
+// console.log("===",props.neighbor)
 </script>
 <template>
 <a-card  :title="props.title" class="user self">
