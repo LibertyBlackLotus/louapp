@@ -6,12 +6,14 @@ const props = defineProps({
         default:[],
     }
 });
+// console.log("===neighbors==",props.neighbors)
 </script>
 <template>
 <div class="cmp relations">
-    <a-card :title="nb.lou" class="part" 
+    <a-card class="part" 
         v-for="nb,idx in props.neighbors"
-        :key="'nb-'+nb.lou">
+        :key="'nb-'+nb.lou"
+        :title="nb.lou">
         <CMPNeighbor title="楼上" :neighbor="nb.up" />
         <CMPNeighbor title="自己" :neighbor="nb.self" />
         <CMPNeighbor title="楼下" :neighbor="nb.down" />

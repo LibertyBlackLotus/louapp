@@ -7,7 +7,7 @@ import CMPRelations from "@/components/Relations.vue";
 
 const filter = reactive({
     indexLou:"", // 0005
-    username:"", // 王志，孟潮，孟祥旺，王凤, 王雷
+    username:"王志", // 王志，孟潮，孟祥旺，王凤, 王雷
     house:"", // 47-1-1-101
 })
 
@@ -36,7 +36,8 @@ function parseLouInfo(str){
         if(_units){
             const _splitLou = _units.split(" "),
                 _house=parseInt(_splitLou[0]),
-                _splitUnit=_splitLou[1].split("单元");
+                _splitUnit=_splitLou[1].split("单元"),
+                _roomType = _splitLou[2];
 
             lou.lou=_house;
 
@@ -45,6 +46,7 @@ function parseLouInfo(str){
 
             lou.unit = _unit;
             lou.room = _room;
+            lou.roomType=_roomType;
 
             set(lou,`key_${_area}_${_house}_${_unit}_${_room}`)
             set(lou,"unitID",`${_area}-${_house}-${_unit}-${_room}`)
@@ -165,13 +167,14 @@ function findNeighbor(users){
             let _UNID = get(lou,"unitUID"),
                 _DNID = get(lou,"unitDID"),
                 _NNID = get(lou,"unitNID"),
-                _UID=get(lou,"unitID");
+                _UID=get(lou,"unitID"),
+                _roomType=get(lou,"roomType");
             // 通过unitID找邻居
             // console.log("==v==",_UID,"==",_UNID,"==",_DNID,"==",_NNID);
             const _userUp = doFind(_UNID);
             const _userDown = doFind(_DNID);
             const _userNB = doFind(_NNID);
-            _result.push({lou:_UID,self:u,up:_userUp,down:_userDown,nb:_userNB});
+            _result.push({lou:_UID+" "+_roomType,self:u,up:_userUp,down:_userDown,nb:_userNB});
             // console.log("====",_userUp,"==",_userDown,"==",_userNB)
         })
     })
