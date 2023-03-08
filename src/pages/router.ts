@@ -14,11 +14,37 @@ import PageAreaTotal from "./views/AreaTotal.vue";
 import PageAreaTotalByFloor from "./views/AreaTotalByFloor.vue";
 import PageAreaDisplay from "./views/AreaDisplay.vue";
 import PageSearchLou from "./views/SearchLou.vue";
+
+import PageHome from "./views/Home.vue";
+
+import PageMobileSearchLou from "./views/mobile/SearchLou.vue";
+
 const routes=[
   {
     path:"",
     name:"index",
     children:[
+      {
+        path:"",
+        name:"",
+        redirect:"home"
+      },
+      {
+        path:"home",
+        name:"home",
+        component:PageHome
+      },
+      {
+        path:"mobile",
+        name:"mobile",
+        children:[
+          {
+            path:"search-lou",
+            name:"search-lou-h5",
+            component:PageMobileSearchLou,
+          }
+        ]
+      },
       {
         path:"search-lou",
         name:"search-lou",

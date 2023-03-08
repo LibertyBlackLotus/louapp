@@ -18,7 +18,7 @@ html,body{
   padding:10px 0;
   background-color:whitesmoke;
 }
-.area{
+.area,.container{
   background-color:whitesmoke;
 }
 h1,h2,h3,h4,h5,h6{padding:0;margin:0;}
