@@ -257,7 +257,8 @@ function doSearchCancel(){
       <button class="btn close" data-type="icon" @click.stop="hideSearchPro"></button>
     </div>
     <div class="form">
-      <div class="field">
+      <p class="tip">* 优先匹配选房序号, 如用以下搜索需要先清空选房序号</p>
+      <div class="field first">
           <label>被腾退人：</label>
           <input v-model="filter.username" placeholder="请输入被腾退人姓名" />
       </div>
@@ -373,10 +374,12 @@ function doSearchCancel(){
     >.form{
       display:flex;
       flex-direction: column;
+      >.tip{padding:0;margin:0;color: red;text-align:left;padding:.1rem;}
       >.field{
         margin-top:.2rem;
         padding:0 .14rem;
         text-align: left;
+        &.first{margin-top:0;}
         >label{
           font-size:.14rem;
           display:block;
